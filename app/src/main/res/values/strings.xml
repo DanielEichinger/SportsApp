@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">Sports App</string>
+    <string name="app_name">Sports App</string>d
+    <string name="input_location_name">Name</string>
+    <string name="input_location_description">Description</string>
+    <string name="input_location_image">Image</string>
+    <string name="input_location_image_select">Select</string>
+    <string name="input_location_location">Location</string>
+    <string name="input_location_location_select">Select</string>
+    <string name="input_location_kinds_of_sports">Kinds of sports</string>
+    <string name="input_location_kinds_of_sports_hint">Write sports on seperate lines</string>
+    <string name="input_location_submit">Add</string>
 </resources>
