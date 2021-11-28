@@ -7,7 +7,7 @@ import com.example.sportsapp.databinding.CardLocationBinding
 import com.example.sportsapp.models.Location
 
 
-class LocationAdapter(private var locations: ArrayList<Location>) :
+class LocationAdapter constructor(private var locations: List<Location>) :
     RecyclerView.Adapter<LocationAdapter.MainHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
         val binding = CardLocationBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -32,6 +32,7 @@ class LocationAdapter(private var locations: ArrayList<Location>) :
             temp_sports = temp_sports.dropLast(2)
 
             binding.locationSports.text = temp_sports
+
         }
     }
 }

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sportsapp.adapter.LocationAdapter
 import com.example.sportsapp.databinding.ActivityLocationListBinding
 import com.example.sportsapp.main.MainApp
+import com.example.sportsapp.models.Location
 
 class LocationListActivity : AppCompatActivity(){
 
@@ -28,6 +29,13 @@ class LocationListActivity : AppCompatActivity(){
         fab.setOnClickListener { view ->
             val launcherIntent = Intent(this, LocationActivity::class.java)
             startActivityForResult(launcherIntent, 0)
+            //app.locations.add(Location("Test", "Add", emptySet()))
+        }
+
+        val refresh = binding.swipeContainer
+        refresh.setOnRefreshListener {
+            app.locations.add(Location("Test", "Update", emptySet()))
+            refresh.isRefreshing = false
         }
     }
 
