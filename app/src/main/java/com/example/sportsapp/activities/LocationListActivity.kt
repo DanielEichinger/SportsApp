@@ -35,8 +35,14 @@ class LocationListActivity : AppCompatActivity(){
         val refresh = binding.swipeContainer
         refresh.setOnRefreshListener {
             app.locations.add(Location("Test", "Update", emptySet()))
+            binding.recyclerView.adapter?.notifyDataSetChanged()
             refresh.isRefreshing = false
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        binding.recyclerView.adapter?.notifyDataSetChanged()
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
 
