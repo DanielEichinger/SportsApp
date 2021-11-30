@@ -13,11 +13,11 @@ class MainApp : Application() {
         Timber.plant(Timber.DebugTree())
         i("SportsApp started")
 
-        locations.add(Location("Swimming pool", "Public swimming pool next to the school", setOf("Swimming", "Table tennis")))
-        locations.add(Location("Football field", "Description for Football field\n" +
+        locations.add(Location(0, "Swimming pool", "Public swimming pool next to the school", setOf("Swimming", "Table tennis")))
+        locations.add(Location(1, "Football field", "Description for Football field\n" +
                 "this could also go multiple lines\n" +
                 "maybe some additional information:\n" +
                 "08:00 - 20:00, Mo - Fr", setOf("Football")))
-        locations.add(Location("Public park", "Description for Public park", setOf("Basketball")))
+        locations.add(Location(2, "Public park", "Description for Public park", setOf("Basketball")))
     }
 }

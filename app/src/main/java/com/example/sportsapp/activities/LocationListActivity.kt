@@ -8,8 +8,9 @@ import com.example.sportsapp.adapter.LocationAdapter
 import com.example.sportsapp.databinding.ActivityLocationListBinding
 import com.example.sportsapp.main.MainApp
 import com.example.sportsapp.models.Location
+import timber.log.Timber.i
 
-class LocationListActivity : AppCompatActivity(){
+class LocationListActivity : AppCompatActivity(), LocationListener{
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityLocationListBinding
@@ -23,7 +24,7 @@ class LocationListActivity : AppCompatActivity(){
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = LocationAdapter(app.locations)
+        binding.recyclerView.adapter = LocationAdapter(app.locations, this)
 
         val fab = binding.fab
         fab.setOnClickListener { view ->
@@ -34,7 +35,7 @@ class LocationListActivity : AppCompatActivity(){
 
         val refresh = binding.swipeContainer
         refresh.setOnRefreshListener {
-            app.locations.add(Location("Test", "Update", emptySet()))
+            //app.locations.add(Location("Test", "Update", emptySet()))
             binding.recyclerView.adapter?.notifyDataSetChanged()
             refresh.isRefreshing = false
         }
@@ -45,5 +46,18 @@ class LocationListActivity : AppCompatActivity(){
         super.onActivityResult(requestCode, resultCode, data)
     }
 
+    override fun onLocationClick(location: Location) {
+        if (intent.hasExtra("from_event_creation")) {
+            val resultIntent = Intent()
+            resultIntent.putExtra("selected_location", location.id)
+            i("id sent: ${location.id}")
+            setResult(RESULT_OK, resultIntent)
+            finish()
+        }
+    }
 
+}
+
+interface LocationListener {
+    fun onLocationClick(location: Location)
 }

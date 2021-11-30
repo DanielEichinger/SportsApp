@@ -1,5 +1,17 @@
 package com.example.sportsapp.models
 
-data class Location(var name: String = "",
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+data class Location(var id: Int = 0,
+                    var name: String = "",
                     var description: String = "",
-                    var sports: Set<String> = emptySet())
+                    var sports: Set<String> = emptySet()) : Parcelable
+
+
+var lastId = 0
+
+internal fun getId(): Int {
+    return lastId++
+}
