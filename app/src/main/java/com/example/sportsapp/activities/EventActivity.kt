@@ -7,6 +7,7 @@ import com.example.sportsapp.databinding.ActivityEventBinding
 import com.example.sportsapp.main.MainApp
 import timber.log.Timber.i
 import com.example.sportsapp.models.Event
+import com.google.android.material.snackbar.Snackbar
 
 class EventActivity : AppCompatActivity() {
 
@@ -28,6 +29,19 @@ class EventActivity : AppCompatActivity() {
             val launcherIntent = Intent(this, LocationListActivity::class.java)
             launcherIntent.putExtra("from_event_creation", true)
             startActivityForResult(launcherIntent, 0)
+        }
+
+        binding.buttonSubmitEvent.setOnClickListener {
+            event.title = binding.eventTitle.text.toString()
+            event.description = binding.eventDescription.text.toString()
+
+            if (event.title.isEmpty() || event.description.isEmpty()) {
+                Snackbar.make(it, "Missing information", Snackbar.LENGTH_LONG)
+            } else {
+                app.events.add(event.copy())
+            }
+            setResult(RESULT_OK)
+            finish()
         }
     }
 

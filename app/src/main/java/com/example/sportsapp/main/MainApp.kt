@@ -1,12 +1,14 @@
 package com.example.sportsapp.main
 
 import android.app.Application
+import com.example.sportsapp.models.Event
 import com.example.sportsapp.models.Location
 import timber.log.Timber
 import timber.log.Timber.i
 
 class MainApp : Application() {
     val locations = ArrayList<Location>()
+    val events = ArrayList<Event>()
 
     override fun onCreate() {
         super.onCreate()
