@@ -23,7 +23,7 @@ class LoginActivity : AppCompatActivity() {
 
         binding.buttonLogin.setOnClickListener {
             app.user = User(binding.username.text.toString())
-            val launcherIntent = Intent(this, EventActivity::class.java)
+            val launcherIntent = Intent(this, EventListActivity::class.java)
             startActivity(launcherIntent)
         }
     }

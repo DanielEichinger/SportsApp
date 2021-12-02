@@ -32,19 +32,20 @@
             tools:text="A Description" />
 
         <TextView
-            android:id="@+id/eventAdmin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/eventDescription"
-            android:textStyle="italic"
-            android:layout_marginBottom="8dp"
-            tools:text="Admin of event" />
-
-        <TextView
             android:id="@+id/eventLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/eventAdmin" />
+            android:layout_below="@id/eventDescription"
+            android:layout_marginBottom="8dp"
+            tools:text="Location of event"/>
+
+        <TextView
+            android:id="@+id/eventAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/eventLocation"
+            android:textStyle="italic"
+            tools:text="Admin of event" />
 
     </RelativeLayout>
 

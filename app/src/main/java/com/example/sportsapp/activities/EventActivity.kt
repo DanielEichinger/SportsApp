@@ -34,6 +34,7 @@ class EventActivity : AppCompatActivity() {
         binding.buttonSubmitEvent.setOnClickListener {
             event.title = binding.eventTitle.text.toString()
             event.description = binding.eventDescription.text.toString()
+            event.admin?.username = app.user.username
 
             if (event.title.isEmpty() || event.description.isEmpty()) {
                 Snackbar.make(it, "Missing information", Snackbar.LENGTH_LONG)
