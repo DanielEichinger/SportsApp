@@ -16,4 +16,7 @@
     <string name="input_event_location_label">No location selected</string>
     <string name="input_event_location_select">Select location</string>
     <string name="input_event_submit">Create event</string>
+    <string name="login_username">Username</string>
+    <string name="login_password">Password</string>
+    <string name="login_login_button">Login</string>
 </resources>
