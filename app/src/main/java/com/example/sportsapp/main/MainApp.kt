@@ -2,11 +2,13 @@ package com.example.sportsapp.main
 
 import android.app.Application
 import com.example.sportsapp.models.Location
+import com.example.sportsapp.models.User
 import timber.log.Timber
 import timber.log.Timber.i
 
 class MainApp : Application() {
     val locations = ArrayList<Location>()
+    lateinit var user : User
 
     override fun onCreate() {
         super.onCreate()
