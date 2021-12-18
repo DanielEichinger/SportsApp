@@ -31,14 +31,13 @@ class LocationListActivity : AppCompatActivity(), LocationListener{
         binding.recyclerView.adapter = LocationAdapter(app.locations, this)
 
         val fab = binding.fab
-        fab.setOnClickListener { view ->
+        fab.setOnClickListener {
             val launcherIntent = Intent(this, LocationActivity::class.java)
             refreshLauncherIntent.launch(launcherIntent)
         }
 
         val refresh = binding.swipeContainer
         refresh.setOnRefreshListener {
-            //app.locations.add(Location("Test", "Update", emptySet()))
             binding.recyclerView.adapter?.notifyDataSetChanged()
             refresh.isRefreshing = false
         }
@@ -49,10 +48,8 @@ class LocationListActivity : AppCompatActivity(), LocationListener{
     override fun onLocationClick(location: Location) {
         if (intent.hasExtra("from_event_creation")) {
             val resultIntent = Intent()
-            resultIntent.putExtra("selected_location", location.id)
-            i("id sent: ${location.id}")
-            //resultIntent.putExtra("selected_location", location)
-            //i("selected location: $location")
+            resultIntent.putExtra("selected_location", location)
+            i("selected location: $location")
             setResult(RESULT_OK, resultIntent)
             finish()
         }
