@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.example.sportsapp.databinding.ActivityLocationBinding
 import com.example.sportsapp.main.MainApp
 import com.example.sportsapp.models.Location
+import com.example.sportsapp.models.getId
 import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber.i
 
@@ -33,6 +34,7 @@ class LocationActivity : AppCompatActivity() {
                 Snackbar.make(it, "Missing information", Snackbar.LENGTH_LONG).show()
             } else {
                 location.sports = kindsOfSportsString.split( "\n").toSet()
+                location.id = getId()
 
                 app.locations.add(location.copy())
                 for (i in app.locations.indices) {

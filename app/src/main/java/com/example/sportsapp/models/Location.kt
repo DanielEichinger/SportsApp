@@ -10,7 +10,7 @@ data class Location(var id: Int = 0,
                     var sports: Set<String> = emptySet()) : Parcelable
 
 
-var lastId = 0
+var lastId = 3
 
 internal fun getId(): Int {
     return lastId++

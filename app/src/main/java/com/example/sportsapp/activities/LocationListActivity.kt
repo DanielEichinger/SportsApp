@@ -2,6 +2,8 @@ package com.example.sportsapp.activities
 
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sportsapp.adapter.LocationAdapter
@@ -14,6 +16,8 @@ class LocationListActivity : AppCompatActivity(), LocationListener{
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityLocationListBinding
+
+    private lateinit var refreshLauncherIntent : ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +33,7 @@ class LocationListActivity : AppCompatActivity(), LocationListener{
         val fab = binding.fab
         fab.setOnClickListener { view ->
             val launcherIntent = Intent(this, LocationActivity::class.java)
-            startActivityForResult(launcherIntent, 0)
-            //app.locations.add(Location("Test", "Add", emptySet()))
+            refreshLauncherIntent.launch(launcherIntent)
         }
 
         val refresh = binding.swipeContainer
@@ -39,11 +42,8 @@ class LocationListActivity : AppCompatActivity(), LocationListener{
             binding.recyclerView.adapter?.notifyDataSetChanged()
             refresh.isRefreshing = false
         }
-    }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        binding.recyclerView.adapter?.notifyDataSetChanged()
-        super.onActivityResult(requestCode, resultCode, data)
+        registerRefreshCallback()
     }
 
     override fun onLocationClick(location: Location) {
@@ -51,8 +51,16 @@ class LocationListActivity : AppCompatActivity(), LocationListener{
             val resultIntent = Intent()
             resultIntent.putExtra("selected_location", location.id)
             i("id sent: ${location.id}")
+            //resultIntent.putExtra("selected_location", location)
+            //i("selected location: $location")
             setResult(RESULT_OK, resultIntent)
             finish()
+        }
+    }
+
+    private fun registerRefreshCallback() {
+        refreshLauncherIntent = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            binding.recyclerView.adapter?.notifyDataSetChanged()
         }
     }
 
