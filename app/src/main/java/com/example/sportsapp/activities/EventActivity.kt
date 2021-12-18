@@ -61,6 +61,7 @@ class EventActivity : AppCompatActivity() {
                         val selected_location = result.data!!.extras?.getParcelable<Location>("selected_location")
                         i("Selected location: $selected_location")
                         event.location = selected_location!!
+                        binding.labelSelectedLocation.text = selected_location.name
                     }
                 }
                 RESULT_CANCELED -> {}

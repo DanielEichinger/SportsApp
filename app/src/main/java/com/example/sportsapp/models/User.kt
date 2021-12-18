@@ -1,6 +1,10 @@
 package com.example.sportsapp.models
 
-class User(var username: String) {
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+class User(var username: String) : Parcelable{
 
 
 }

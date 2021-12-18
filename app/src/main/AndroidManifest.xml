@@ -25,6 +25,9 @@
             android:name=".activities.EventActivity">
         </activity>
         <activity
+            android:name=".activities.EventDetailActivity">
+        </activity>
+        <activity
             android:name=".activities.LocationListActivity">
         </activity>
         <activity

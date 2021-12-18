@@ -20,4 +20,5 @@
     <string name="login_password">Password</string>
     <string name="login_login_button">Login</string>
     <string name="event_list_created_by">Event created by</string>
+    <string name="event_detail_comment">Comment</string>
 </resources>

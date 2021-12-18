@@ -9,12 +9,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.sportsapp.adapter.EventAdapter
 import com.example.sportsapp.databinding.ActivityEventListBinding
 import com.example.sportsapp.main.MainApp
+import com.example.sportsapp.models.Event
+import timber.log.Timber.i
 
-class EventListActivity : AppCompatActivity(){
+class EventListActivity : AppCompatActivity(), EventListener{
     lateinit var app: MainApp
     private lateinit var binding: ActivityEventListBinding
 
     private lateinit var refreshIntentLauncher : ActivityResultLauncher<Intent>
+    private lateinit var detailIntentLauncher : ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +28,7 @@ class EventListActivity : AppCompatActivity(){
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerViewEvents.layoutManager = layoutManager
-        binding.recyclerViewEvents.adapter = EventAdapter(app.events)
+        binding.recyclerViewEvents.adapter = EventAdapter(app.events, this)
 
         val fab = binding.fabEvents
         fab.setOnClickListener {
@@ -34,6 +37,7 @@ class EventListActivity : AppCompatActivity(){
         }
 
         registerRefreshCallback()
+        registerDetailCallback()
     }
 
     private fun registerRefreshCallback() {
@@ -41,4 +45,22 @@ class EventListActivity : AppCompatActivity(){
             binding.recyclerViewEvents.adapter?.notifyDataSetChanged()
         }
     }
+
+    private fun registerDetailCallback() {
+        detailIntentLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            // nothing to do here
+        }
+
+    }
+
+    override fun onEventClick(event: Event) {
+        i("selected Event: $event")
+        val launcherIntent = Intent(this, EventDetailActivity::class.java)
+        launcherIntent.putExtra("selected_event", event)
+        detailIntentLauncher.launch(launcherIntent)
+    }
+}
+
+interface EventListener {
+    fun onEventClick(event: Event)
 }
