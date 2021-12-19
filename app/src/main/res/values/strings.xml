@@ -18,8 +18,10 @@
     <string name="input_event_time_date_label">Time and Date</string>
     <string name="input_event_time">Set Time</string>
     <string name="input_event_time_label">No time set</string>
+    <string name="input_event_time_placeholder">%1$s:%2$s</string>
     <string name="input_event_date">Set Date</string>
     <string name="input_event_date_label">No date set</string>
+    <string name="input_event_date_placeholder">%1s.%2s.%3d</string>
     <string name="input_event_submit">Create event</string>
     <string name="login_username">Username</string>
     <string name="login_password">Password</string>

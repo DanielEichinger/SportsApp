@@ -130,7 +130,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:onClick="showTimePickerDialog"
         android:text="@string/input_event_time"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelTimeDate" />
@@ -140,13 +139,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:onClick="showDatePickerDialog"
         android:text="@string/input_event_date"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonTime" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/labelTime"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -158,7 +156,7 @@
         app:layout_constraintTop_toTopOf="@+id/buttonTime" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/labelDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
