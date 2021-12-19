@@ -9,6 +9,8 @@
     <string name="input_location_kinds_of_sports">Kinds of sports</string>
     <string name="input_location_kinds_of_sports_hint">Write sports on seperate lines</string>
     <string name="input_location_submit">Add</string>
+    <string name="event_list_toolbar_title">Events</string>
+    <string name="event_creation_toolbar_title">New Event</string>
     <string name="input_event_title">Title</string>
     <string name="input_event_description">Description</string>
     <string name="input_event_number_of_people">Number of people</string>

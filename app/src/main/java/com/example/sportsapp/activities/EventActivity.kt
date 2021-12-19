@@ -34,6 +34,10 @@ class EventActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener,
 
         binding = ActivityEventBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.toolbar.title = getString(R.string.event_creation_toolbar_title)
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
 
         app = application as MainApp
         i("Event Activity started...")
@@ -58,6 +62,10 @@ class EventActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener,
                 finish()
             }
 
+        }
+
+        binding.toolbar.setNavigationOnClickListener {
+            finish()
         }
 
         binding.buttonTime.setOnClickListener {

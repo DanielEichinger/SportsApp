@@ -6,6 +6,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.sportsapp.R
 import com.example.sportsapp.adapter.EventAdapter
 import com.example.sportsapp.databinding.ActivityEventListBinding
 import com.example.sportsapp.main.MainApp
@@ -23,6 +24,8 @@ class EventListActivity : AppCompatActivity(), EventListener{
         super.onCreate(savedInstanceState)
         binding = ActivityEventListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.toolbar.title = getString(R.string.event_list_toolbar_title)
+        setSupportActionBar(binding.toolbar)
 
         app = application as MainApp
 
