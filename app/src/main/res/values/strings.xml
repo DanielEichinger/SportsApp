@@ -15,6 +15,11 @@
     <string name="input_event_location">Location</string>
     <string name="input_event_location_label">No location selected</string>
     <string name="input_event_location_select">Select location</string>
+    <string name="input_event_time_date_label">Time and Date</string>
+    <string name="input_event_time">Set Time</string>
+    <string name="input_event_time_label">No time set</string>
+    <string name="input_event_date">Set Date</string>
+    <string name="input_event_date_label">No date set</string>
     <string name="input_event_submit">Create event</string>
     <string name="login_username">Username</string>
     <string name="login_password">Password</string>

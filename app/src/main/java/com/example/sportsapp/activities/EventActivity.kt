@@ -2,10 +2,13 @@ package com.example.sportsapp.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.example.sportsapp.databinding.ActivityEventBinding
+import com.example.sportsapp.fragments.DatePickerFragment
+import com.example.sportsapp.fragments.TimePickerFragment
 import com.example.sportsapp.main.MainApp
 import timber.log.Timber.i
 import com.example.sportsapp.models.Event
@@ -68,5 +71,14 @@ class EventActivity : AppCompatActivity() {
                 else -> {}
             }
         }
+    }
+
+
+    fun showTimePickerDialog(v: View) {
+        TimePickerFragment().show(supportFragmentManager, "timePicker")
+    }
+
+    fun showDatePickerDialog(v: View) {
+        DatePickerFragment().show(supportFragmentManager, "datePicker")
     }
 }
