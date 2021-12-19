@@ -18,16 +18,22 @@ class EventDetailActivity : AppCompatActivity(){
 
         binding = ActivityEventDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.toolbar.title = title
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
 
         app = application as MainApp
         i("Event Detail Activity started")
 
         if(intent.hasExtra("selected_event")) {
             event = intent.extras?.getParcelable("selected_event")!!
-            binding.name.text = event.title
+            binding.toolbar.title = event.title
             binding.description.text = event.description
         }
 
+        binding.toolbar.setNavigationOnClickListener {
+            finish()
+        }
     }
-
 }
