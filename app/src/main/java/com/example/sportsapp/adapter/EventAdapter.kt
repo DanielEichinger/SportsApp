@@ -34,7 +34,7 @@ class EventAdapter constructor(private var events: List<Event>,
             binding.eventName.text = event.title
             binding.eventDescription.text = event.description
             binding.eventLocation.text = event.location.name
-            binding.eventAdmin.text = binding.root.context.getString(R.string.event_list_created_by) + " " + event.admin?.username
+            //binding.eventAdmin.text = binding.root.context.getString(R.string.event_list_created_by) + " " + event.admin?.username
             binding.root.setOnClickListener { listener.onEventClick(event) }
         }
     }

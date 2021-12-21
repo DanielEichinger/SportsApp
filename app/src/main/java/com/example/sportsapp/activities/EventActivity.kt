@@ -52,12 +52,12 @@ class EventActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener,
         binding.buttonSubmitEvent.setOnClickListener {
             event.title = binding.eventTitle.text.toString()
             event.description = binding.eventDescription.text.toString()
-            event.admin.username = app.user.username
+            //event.admin.username = app.user.username
 
             if (event.title.isEmpty() || event.description.isEmpty()) {
                 Snackbar.make(it, "Missing information", Snackbar.LENGTH_LONG).show()
             } else {
-                app.events.add(event.copy())
+                //app.events.add(event.copy())
                 setResult(RESULT_OK)
                 finish()
             }
@@ -105,6 +105,7 @@ class EventActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener,
     }
 
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
+        /*
         i("Time set to $hourOfDay:$minute")
 
         val year = event.dateTime.year
@@ -118,9 +119,12 @@ class EventActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener,
             minute.toString().padStart(2, '0'))
 
         i("dateTime: ${event.dateTime}")
+
+         */
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        /*
         // month is in range 0..11
         // +1 for use when creating new date
         val month_correct = month + 1
@@ -138,5 +142,7 @@ class EventActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener,
             year)
 
         i("dateTime: ${event.dateTime}")
+
+         */
     }
 }

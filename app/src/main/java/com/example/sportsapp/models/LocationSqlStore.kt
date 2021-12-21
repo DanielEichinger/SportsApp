@@ -35,6 +35,10 @@ class LocationSqlStore : LocationStore {
         return locations
     }
 
+    override fun getById(id: Int): Location? {
+        return getAll().find { it.id == id }
+    }
+
     override fun create(location: Location) {
         transaction {
             val id = LocationsTable.insertAndGetId {

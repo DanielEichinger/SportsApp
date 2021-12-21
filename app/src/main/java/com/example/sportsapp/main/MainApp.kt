@@ -11,7 +11,8 @@ import timber.log.Timber.i
 class MainApp : Application() {
     //var locations = ArrayList<Location>()
     lateinit var locations: LocationStore
-    val events = ArrayList<Event>()
+    //val events = ArrayList<Event>()
+    lateinit var events: EventStore
     lateinit var user : User
     val userlogin : UserSql = UserSql()
     lateinit var db: Database;
@@ -22,6 +23,7 @@ class MainApp : Application() {
         i("SportsApp started")
 
         locations = LocationSqlStore()
+        events = EventSqlStore(locations)
 /*
         locations.add(Location(0, "Swimming pool", "Public swimming pool next to the school", setOf("Swimming", "Table tennis")))
         locations.add(Location(1, "Football field", "Description for Football field\n" +

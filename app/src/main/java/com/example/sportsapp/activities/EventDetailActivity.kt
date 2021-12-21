@@ -37,7 +37,7 @@ class EventDetailActivity : AppCompatActivity(){
 
         if(intent.hasExtra("selected_event")) {
             event = intent.extras?.getParcelable("selected_event")!!
-            binding.recyclerView.adapter = ChatMessageAdapter(event.chatHistory)
+            //binding.recyclerView.adapter = ChatMessageAdapter(event.chatHistory)
             binding.toolbar.title = event.title
             binding.description.text = event.description
         }
@@ -50,7 +50,7 @@ class EventDetailActivity : AppCompatActivity(){
             chatMessage.message = binding.message.text.toString()
             chatMessage.user.username = app.user.username
             chatMessage.time = LocalDateTime.now()
-            event.chatHistory.add(chatMessage.copy())
+            //event.chatHistory.add(chatMessage.copy())
             binding.recyclerView.adapter?.notifyDataSetChanged()
 
         }

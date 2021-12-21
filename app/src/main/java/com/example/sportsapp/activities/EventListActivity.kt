@@ -31,7 +31,7 @@ class EventListActivity : AppCompatActivity(), EventListener{
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerViewEvents.layoutManager = layoutManager
-        binding.recyclerViewEvents.adapter = EventAdapter(app.events, this)
+        binding.recyclerViewEvents.adapter = EventAdapter(app.events.getAll(), this)
 
         val fab = binding.fabEvents
         fab.setOnClickListener {
