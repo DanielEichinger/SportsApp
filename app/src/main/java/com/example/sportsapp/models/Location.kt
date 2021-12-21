@@ -7,11 +7,4 @@ import kotlinx.parcelize.Parcelize
 data class Location(var id: Int = 0,
                     var name: String = "",
                     var description: String = "",
-                    var sports: Set<String> = emptySet()) : Parcelable
-
-
-var lastId = 3
-
-internal fun getId(): Int {
-    return lastId++
-}
+                    var sports: MutableSet<String> = mutableSetOf()) : Parcelable

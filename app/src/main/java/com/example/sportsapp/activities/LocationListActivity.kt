@@ -10,7 +10,6 @@ import com.example.sportsapp.adapter.LocationAdapter
 import com.example.sportsapp.databinding.ActivityLocationListBinding
 import com.example.sportsapp.main.MainApp
 import com.example.sportsapp.models.Location
-import com.example.sportsapp.models.LocationSql
 import timber.log.Timber.i
 
 class LocationListActivity : AppCompatActivity(), LocationListener{
@@ -29,7 +28,7 @@ class LocationListActivity : AppCompatActivity(), LocationListener{
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = LocationAdapter(app.locations, this)
+        binding.recyclerView.adapter = LocationAdapter(app.locations.getAll(), this)
 
         val fab = binding.fab
         fab.setOnClickListener {
@@ -39,8 +38,11 @@ class LocationListActivity : AppCompatActivity(), LocationListener{
 
         val refresh = binding.swipeContainer
         refresh.setOnRefreshListener {
-            val l = LocationSql()
-            app.locations = l.getAll()
+            val l = app.locations.getAll()
+            for (loc in l) {
+                i("LOL: ${loc.toString()}")
+            }
+            binding.recyclerView.adapter = LocationAdapter(l, this)
             binding.recyclerView.adapter?.notifyDataSetChanged()
             refresh.isRefreshing = false
         }
