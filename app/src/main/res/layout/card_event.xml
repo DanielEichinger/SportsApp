@@ -47,6 +47,24 @@
             android:textStyle="italic"
             tools:text="Admin of event" />
 
+        <TextView
+            android:id="@+id/eventTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/eventAdmin" />
+
+        <TextView
+            android:id="@+id/participants"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/eventTime" />
+
+        <TextView
+            android:id="@+id/eventChat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/participants" />
+
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

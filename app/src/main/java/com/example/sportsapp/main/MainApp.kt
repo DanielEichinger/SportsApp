@@ -42,7 +42,7 @@ class MainApp : Application() {
         val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
         StrictMode.setThreadPolicy(policy)
         try {
-            db = Database.connect("jdbc:mysql://192.168.2.106:3306/sports_app?autoReconnect=true&useSSl=false",
+            db = Database.connect("jdbc:mysql://192.168.2.108:3306/sports_app?autoReconnect=true&useSSl=false",
                 driver="com.mysql.jdbc.Driver",
                 user = "kotlin",
                 password = "kotlin")
