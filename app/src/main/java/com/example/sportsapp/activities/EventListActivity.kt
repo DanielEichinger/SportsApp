@@ -39,6 +39,17 @@ class EventListActivity : AppCompatActivity(), EventListener{
             refreshIntentLauncher.launch(launcherIntent)
         }
 
+        val refresh = binding.swipeContainer
+        refresh.setOnRefreshListener {
+            val e = app.events.getAll()
+            for (event in e) {
+                i("$event")
+            }
+            binding.recyclerViewEvents.adapter = EventAdapter(e, this)
+            binding.recyclerViewEvents.adapter?.notifyDataSetChanged()
+            refresh.isRefreshing = false
+        }
+
         registerRefreshCallback()
         registerDetailCallback()
     }
