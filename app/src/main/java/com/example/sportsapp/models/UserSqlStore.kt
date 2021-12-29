@@ -1,5 +1,6 @@
 package com.example.sportsapp.models
 
+import com.example.sportsapp.sql.UsersTable
 import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.Query
 import org.jetbrains.exposed.sql.and

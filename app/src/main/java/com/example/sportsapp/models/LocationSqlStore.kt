@@ -1,5 +1,7 @@
 package com.example.sportsapp.models
 
+import com.example.sportsapp.sql.ActivityTable
+import com.example.sportsapp.sql.LocationsTable
 import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -57,12 +59,3 @@ class LocationSqlStore : LocationStore {
 }
 
 
-object LocationsTable : IntIdTable("locations") {
-    val name = varchar("name", 20)
-    val description = varchar("description", 20)
-}
-
-object ActivityTable : Table("activities") {
-    val l_id = integer("l_id")
-    val activity = varchar("activity", 20)
-}

@@ -1,5 +1,7 @@
 package com.example.sportsapp.models
 
+import com.example.sportsapp.sql.ChatMessagesTable
+import com.example.sportsapp.sql.UsersTable
 import org.jetbrains.exposed.sql.JoinType
 import org.jetbrains.exposed.sql.SortOrder
 import org.jetbrains.exposed.sql.insert
