@@ -28,6 +28,12 @@
     <string name="login_username">Username</string>
     <string name="login_password">Password</string>
     <string name="login_login_button">Login</string>
+    <string name="login_no_account">No account? Register here</string>
+    <string name="login_register_button">Register</string>
+    <string name="register_username">Username</string>
+    <string name="register_password">Password</string>
+    <string name="register_password_repeat">Repeat Password</string>
+    <string name="register_register_button">Register</string>
     <string name="event_list_created_by">Event created by</string>
     <string name="event_detail_comment">Comment</string>
 </resources>

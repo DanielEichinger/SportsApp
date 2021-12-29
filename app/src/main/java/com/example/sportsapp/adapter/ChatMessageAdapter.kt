@@ -3,9 +3,11 @@ package com.example.sportsapp.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sportsapp.R
 import com.example.sportsapp.databinding.CardChatMessageBinding
 import com.example.sportsapp.main.MainApp
 import com.example.sportsapp.models.ChatMessage
+import com.squareup.picasso.Picasso
 
 class ChatMessageAdapter constructor(private var chatHistory: List<ChatMessage>) :
     RecyclerView.Adapter<ChatMessageAdapter.MainHolder>(){
@@ -29,6 +31,10 @@ class ChatMessageAdapter constructor(private var chatHistory: List<ChatMessage>)
             binding.message.text = chatMessage.message
             binding.user.text = chatMessage.user.username
             binding.time.text = chatMessage.time.toString()
+            Picasso.get()
+                .load(R.drawable.default_avatar_chat)
+                .placeholder(R.drawable.default_avatar_chat)
+                .into(binding.imageView3)
         }
     }
 }

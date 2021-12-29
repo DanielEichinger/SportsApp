@@ -2,7 +2,11 @@ package com.example.sportsapp.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.example.sportsapp.R
 import com.example.sportsapp.databinding.ActivityLoginBinding
 import com.example.sportsapp.main.MainApp
 import com.example.sportsapp.models.User
@@ -15,6 +19,8 @@ import timber.log.Timber.i
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     lateinit var app : MainApp
+
+    private lateinit var registerIntentLauncher : ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,9 +38,19 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 Snackbar.make(it, "Wrong input", Snackbar.LENGTH_LONG).show()
             }
-            //app.user = User(binding.username.text.toString())
         }
 
+        binding.buttonLoginRegister.setOnClickListener {
+            val launcherIntent = Intent(this, RegisterActivity::class.java)
+            startActivity(launcherIntent)
+        }
 
+        registerRegisterCallback()
+    }
+
+    private fun registerRegisterCallback() {
+        registerIntentLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            // nothing to do here
+        }
     }
 }
