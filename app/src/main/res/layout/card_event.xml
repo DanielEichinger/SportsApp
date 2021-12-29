@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
-    android:elevation="24dp"
-    >
+    android:elevation="24dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,20 +12,20 @@
         android:padding="8dp">
 
         <TextView
-            android:id="@+id/eventName"
+            android:id="@+id/eventTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
+            android:layout_marginBottom="8dp"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:layout_marginBottom="8dp"
-            tools:text="A Name" />
+            tools:text="A Title" />
 
         <TextView
             android:id="@+id/eventDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/eventName"
+            android:layout_below="@id/eventTitle"
             android:layout_marginBottom="8dp"
             tools:text="A Description" />
 
@@ -37,13 +35,14 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/eventDescription"
             android:layout_marginBottom="8dp"
-            tools:text="Location of event"/>
+            tools:text="Location of event" />
 
         <TextView
             android:id="@+id/eventAdmin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/eventLocation"
+            android:layout_marginBottom="8dp"
             android:textStyle="italic"
             tools:text="Admin of event" />
 
@@ -51,19 +50,26 @@
             android:id="@+id/eventTime"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/eventAdmin" />
+            android:layout_below="@+id/eventAdmin"
+            android:layout_marginBottom="8dp"
+            android:text="00.00.0000 00 .00" />
 
         <TextView
             android:id="@+id/participants"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/eventTime" />
+            android:layout_below="@+id/eventTime"
+            android:text="Joined: 0" />
 
         <TextView
             android:id="@+id/eventChat"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/participants" />
+            android:layout_below="@+id/eventTime"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@+id/participants"
+            android:text="Messages" />
 
     </RelativeLayout>
 

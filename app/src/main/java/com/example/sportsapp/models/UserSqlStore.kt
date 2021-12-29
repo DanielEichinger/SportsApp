@@ -6,7 +6,10 @@ import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
 
-class UserSql : UserModel {
+class UserSqlStore : UserStore {
+
+    var user_id: Int = 0
+
     override fun create(name: String, password: String) {
         TODO("Not yet implemented")
     }
@@ -14,15 +17,12 @@ class UserSql : UserModel {
     override fun login(name: String, password: String): Boolean {
         var success = false
         transaction {
-            val query: Query = Users.select { Users.name.eq(name) and Users.password.eq(password)}
+            val query: Query = UsersTable.select { UsersTable.name.eq(name) and UsersTable.password.eq(password)}
             success = !query.empty()
+            query.forEach { user_id = it[UsersTable.id].value }
         }
         return success
     }
-}
 
-
-object Users : IntIdTable("users") {
-    val name = varchar("name", 20)
-    val password = varchar("password", 20)
+    override fun getUserId(): Int = user_id
 }

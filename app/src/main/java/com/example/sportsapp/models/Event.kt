@@ -11,7 +11,7 @@ data class Event(var id: Int = 0,
                  var description: String = "",
                  var location: Location = Location(),
                  var dateTime: LocalDateTime = LocalDateTime.now(),
-                 var admin: User = User(""),
+                 var admin: User = User(0,""),
                  var participants: ArrayList<User> = arrayListOf(),
                  var chatHistory: ArrayList<ChatMessage> = arrayListOf()
 ): Parcelable

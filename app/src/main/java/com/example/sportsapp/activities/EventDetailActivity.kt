@@ -37,9 +37,12 @@ class EventDetailActivity : AppCompatActivity(){
 
         if(intent.hasExtra("selected_event")) {
             event = intent.extras?.getParcelable("selected_event")!!
-            //binding.recyclerView.adapter = ChatMessageAdapter(event.chatHistory)
+            binding.recyclerView.adapter = ChatMessageAdapter(event.chatHistory)
             binding.toolbar.title = event.title
             binding.description.text = event.description
+            event.dateTime
+            binding.location.text = event.location.name
+            event.admin
         }
 
         binding.toolbar.setNavigationOnClickListener {
@@ -48,11 +51,11 @@ class EventDetailActivity : AppCompatActivity(){
 
         binding.button.setOnClickListener {
             chatMessage.message = binding.message.text.toString()
-            chatMessage.user.username = app.user.username
+            chatMessage.user.id = app.user.getUserId()
             chatMessage.time = LocalDateTime.now()
-            //event.chatHistory.add(chatMessage.copy())
+            app.chatMessages.create(event.id, chatMessage)
+            binding.recyclerView.adapter = ChatMessageAdapter(app.chatMessages.getAll(event.id))
             binding.recyclerView.adapter?.notifyDataSetChanged()
-
         }
     }
 }

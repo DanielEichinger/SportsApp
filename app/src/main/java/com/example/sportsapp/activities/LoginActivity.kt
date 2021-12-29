@@ -26,7 +26,7 @@ class LoginActivity : AppCompatActivity() {
         i("Login Activity started...")
 
         binding.buttonLogin.setOnClickListener {
-            if (app.userlogin.login(binding.username.text.toString(), binding.password.text.toString())) {
+            if (app.user.login(binding.username.text.toString(), binding.password.text.toString())) {
                 val launcherIntent = Intent(this, EventListActivity::class.java)
                 startActivity(launcherIntent)
             } else {

@@ -7,5 +7,5 @@ import java.time.LocalDateTime
 @Parcelize
 data class ChatMessage(var id: Int = 0,
                        var message : String = "",
-                       var user: User = User(""),
+                       var user: User = User(0,""),
                        var time: LocalDateTime = LocalDateTime.now()) : Parcelable

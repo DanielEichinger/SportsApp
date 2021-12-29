@@ -13,8 +13,9 @@ class MainApp : Application() {
     lateinit var locations: LocationStore
     //val events = ArrayList<Event>()
     lateinit var events: EventStore
-    lateinit var user : User
-    val userlogin : UserSql = UserSql()
+    //lateinit var user : User
+    lateinit var user : UserStore
+    lateinit var chatMessages: ChatMessageStore
     lateinit var db: Database;
 
     override fun onCreate() {
@@ -24,6 +25,8 @@ class MainApp : Application() {
 
         locations = LocationSqlStore()
         events = EventSqlStore(locations)
+        user = UserSqlStore()
+        chatMessages = ChatMessageSqlStore()
 /*
         locations.add(Location(0, "Swimming pool", "Public swimming pool next to the school", setOf("Swimming", "Table tennis")))
         locations.add(Location(1, "Football field", "Description for Football field\n" +

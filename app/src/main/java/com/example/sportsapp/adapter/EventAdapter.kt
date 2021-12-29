@@ -31,7 +31,7 @@ class EventAdapter constructor(private var events: List<Event>,
 
     class MainHolder(private val binding: CardEventBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(event: Event, listener: EventListener) {
-            binding.eventName.text = event.title
+            binding.eventTitle.text = event.title
             binding.eventDescription.text = event.description
             binding.eventLocation.text = event.location.name
             binding.eventAdmin.text = binding.root.context.getString(R.string.event_list_created_by) + " " + event.admin?.username
@@ -39,6 +39,8 @@ class EventAdapter constructor(private var events: List<Event>,
             binding.participants.text = "Joined: " + event.participants.size.toString()
             binding.eventChat.text = "Messages: " + event.chatHistory.size.toString()
             binding.root.setOnClickListener { listener.onEventClick(event) }
+
+
         }
     }
 }

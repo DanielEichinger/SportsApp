@@ -1,11 +1,8 @@
 package com.example.sportsapp.models
 
 import org.jetbrains.exposed.dao.id.IntIdTable
-import org.jetbrains.exposed.sql.JoinType
-import org.jetbrains.exposed.sql.Query
-import org.jetbrains.exposed.sql.Table
+import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.`java-time`.datetime
-import org.jetbrains.exposed.sql.selectAll
 import org.jetbrains.exposed.sql.transactions.transaction
 import timber.log.Timber.i
 
@@ -29,7 +26,7 @@ class EventSqlStore (_location: LocationStore): EventStore {
                     it[EventsTable.description],                // Description
                     location.getById(it[EventsTable.l_id])!!,   // Location
                     it[EventsTable.time],                       // Time of Event
-                    User(it[UsersTable.name])))                 // Admin
+                    User(0, it[UsersTable.name])))           // Admin
 
                 i("${it[EventsTable.id]} ${it[EventsTable.title]} ${it[EventsTable.description]} ${it[EventsTable.l_id]}")
             }
@@ -41,7 +38,7 @@ class EventSqlStore (_location: LocationStore): EventStore {
 
             participantsResult.forEach { par_it ->
                 events.find { par_it[ParticipantsTable.e_id] == it.id}
-                    ?.participants?.add(User(par_it[UsersTable.name]))
+                    ?.participants?.add(User(0, par_it[UsersTable.name]))
 
             }
 
@@ -53,7 +50,7 @@ class EventSqlStore (_location: LocationStore): EventStore {
                 events.find {chat_it[ChatMessagesTable.e_id] == it.id}
                     ?.chatHistory?.add(ChatMessage(chat_it[ChatMessagesTable.id].value,
                         chat_it[ChatMessagesTable.mesage],
-                        User(chat_it[UsersTable.name]),
+                        User(0, chat_it[UsersTable.name]),
                         chat_it[ChatMessagesTable.time]))
             }
         }
