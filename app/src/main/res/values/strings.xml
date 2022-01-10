@@ -25,6 +25,7 @@
     <string name="input_event_date_label">No date set</string>
     <string name="input_event_date_placeholder">%1s.%2s.%3d</string>
     <string name="input_event_submit">Create event</string>
+    <string name="edit_event_submit">Save Changes</string>
     <string name="login_username">Username</string>
     <string name="login_password">Password</string>
     <string name="login_login_button">Login</string>
@@ -36,4 +37,6 @@
     <string name="register_register_button">Register</string>
     <string name="event_list_created_by">Event created by</string>
     <string name="event_detail_comment">Comment</string>
+    <string name="event_detail_edit">Edit</string>
+    <string name="event_detail_join">Join</string>
 </resources>

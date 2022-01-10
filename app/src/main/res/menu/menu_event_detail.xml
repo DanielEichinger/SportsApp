@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/item_edit_event"
+        android:title="@string/event_detail_edit"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/item_join_event"
+        android:title="@string/event_detail_join"
+        app:showAsAction="always"/>
+
+</menu>

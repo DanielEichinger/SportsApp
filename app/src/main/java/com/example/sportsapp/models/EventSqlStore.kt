@@ -30,7 +30,7 @@ class EventSqlStore (_location: LocationStore): EventStore {
                     it[EventsTable.description],                // Description
                     location.getById(it[EventsTable.l_id])!!,   // Location
                     it[EventsTable.time],                       // Time of Event
-                    User(0, it[UsersTable.name])))           // Admin
+                    User(it[UsersTable.id].value, it[UsersTable.name])))           // Admin
 
                 i("${it[EventsTable.id]} ${it[EventsTable.title]} ${it[EventsTable.description]} ${it[EventsTable.l_id]}")
             }
@@ -62,6 +62,10 @@ class EventSqlStore (_location: LocationStore): EventStore {
     }
 
     override fun create(event: Event) {
+        TODO("Not yet implemented")
+    }
+
+    override fun update(event: Event) {
         TODO("Not yet implemented")
     }
 }

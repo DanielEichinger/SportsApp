@@ -32,6 +32,8 @@ class EventActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener,
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        var edit = false
+
         binding = ActivityEventBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.toolbar.title = getString(R.string.event_creation_toolbar_title)
@@ -41,6 +43,15 @@ class EventActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener,
 
         app = application as MainApp
         i("Event Activity started...")
+
+        if (intent.hasExtra("event_edit")) {
+            edit = true
+            event = intent.extras?.getParcelable("event_edit")!!
+            binding.eventTitle.setText(event.title)
+            binding.eventDescription.setText(event.description)
+            binding.labelSelectedLocation.text = event.location.name
+            binding.buttonSubmitEvent.text = getString(R.string.edit_event_submit)
+        }
 
         binding.buttonLocationList.setOnClickListener {
             i("Location button pressed")
