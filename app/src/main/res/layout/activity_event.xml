@@ -75,24 +75,14 @@
 
     <Button
         android:id="@+id/buttonLocationList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/input_event_location_select"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelLocationList" />
-
-    <TextView
-        android:id="@+id/labelSelectedLocation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/input_event_location_label"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonLocationList"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/input_event_location_select"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonLocationList"
-        app:layout_constraintTop_toTopOf="@+id/buttonLocationList" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/labelLocationList" />
 
     <Button
         android:id="@+id/buttonSubmitEvent"
@@ -118,44 +108,24 @@
 
     <Button
         android:id="@+id/buttonTime"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:text="@string/input_event_time"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelTimeDate" />
 
     <Button
         android:id="@+id/buttonDate"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:text="@string/input_event_date"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonTime" />
-
-    <TextView
-        android:id="@+id/labelTime"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/input_event_time_label"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonTime"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonTime"
-        app:layout_constraintTop_toTopOf="@+id/buttonTime" />
-
-    <TextView
-        android:id="@+id/labelDate"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/input_event_date_label"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonDate"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonDate"
-        app:layout_constraintTop_toTopOf="@+id/buttonDate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

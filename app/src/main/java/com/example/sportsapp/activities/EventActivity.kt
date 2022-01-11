@@ -49,7 +49,7 @@ class EventActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener,
             event = intent.extras?.getParcelable("event_edit")!!
             binding.eventTitle.setText(event.title)
             binding.eventDescription.setText(event.description)
-            binding.labelSelectedLocation.text = event.location.name
+            binding.buttonLocationList.text = event.location.name
             binding.buttonSubmitEvent.text = getString(R.string.edit_event_submit)
         }
 
@@ -106,7 +106,7 @@ class EventActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener,
                         val selected_location = result.data!!.extras?.getParcelable<Location>("selected_location")
                         i("Selected location: $selected_location")
                         event.location = selected_location!!
-                        binding.labelSelectedLocation.text = selected_location.name
+                        binding.buttonLocationList.text = selected_location.name
                     }
                 }
                 RESULT_CANCELED -> {}
