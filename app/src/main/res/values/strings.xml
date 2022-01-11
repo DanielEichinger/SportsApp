@@ -35,6 +35,7 @@
     <string name="register_password">Password</string>
     <string name="register_password_repeat">Repeat Password</string>
     <string name="register_register_button">Register</string>
+    <string name="event_list_item_location_list">Show Location List</string>
     <string name="event_list_created_by">Event created by</string>
     <string name="event_detail_comment">Comment</string>
     <string name="event_detail_edit">Edit</string>
@@ -47,4 +48,5 @@
     <string name="event_detail_admin">Admin: %1s</string>
     <string name="event_detail_location_time">At: %1s, %2s</string>
     <string name="title_activity_map">MapActivity</string>
+    <string name="location_list_toolbar_title">Locations</string>
 </resources>

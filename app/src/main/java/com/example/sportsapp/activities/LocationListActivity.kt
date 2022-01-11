@@ -2,10 +2,13 @@ package com.example.sportsapp.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.sportsapp.R
 import com.example.sportsapp.adapter.LocationAdapter
 import com.example.sportsapp.databinding.ActivityLocationListBinding
 import com.example.sportsapp.main.MainApp
@@ -22,7 +25,11 @@ class LocationListActivity : AppCompatActivity(), LocationListener{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLocationListBinding.inflate(layoutInflater)
+        binding.toolbar.title = getString(R.string.location_list_toolbar_title)
         setContentView(binding.root)
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
 
         app = application as MainApp
 
@@ -50,6 +57,11 @@ class LocationListActivity : AppCompatActivity(), LocationListener{
         registerRefreshCallback()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_location_list, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
     override fun onLocationClick(location: Location) {
         if (intent.hasExtra("from_event_creation")) {
             val resultIntent = Intent()
@@ -58,6 +70,18 @@ class LocationListActivity : AppCompatActivity(), LocationListener{
             setResult(RESULT_OK, resultIntent)
             finish()
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed() // other back buttons work without this, somehow this does not
+            }
+            R.id.item_show_location_list -> {
+                i("Map clicked!")
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun registerRefreshCallback() {

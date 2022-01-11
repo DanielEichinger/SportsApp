@@ -1,7 +1,10 @@
 package com.example.sportsapp.activities
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +22,7 @@ class EventListActivity : AppCompatActivity(), EventListener{
 
     private lateinit var refreshIntentLauncher : ActivityResultLauncher<Intent>
     private lateinit var detailIntentLauncher : ActivityResultLauncher<Intent>
+    private lateinit var locationListIntentLauncher: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,6 +56,22 @@ class EventListActivity : AppCompatActivity(), EventListener{
 
         registerRefreshCallback()
         registerDetailCallback()
+        registerlocationListCallback()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_event_list, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item_show_location_list -> {
+                val launcherIntent = Intent(this, LocationListActivity::class.java)
+                locationListIntentLauncher.launch(launcherIntent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun registerRefreshCallback() {
@@ -64,7 +84,12 @@ class EventListActivity : AppCompatActivity(), EventListener{
         detailIntentLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             // nothing to do here
         }
+    }
 
+    private fun registerlocationListCallback() {
+        locationListIntentLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            // nothing to do here
+        }
     }
 
     override fun onEventClick(event: Event) {
