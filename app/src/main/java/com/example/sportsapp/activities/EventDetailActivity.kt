@@ -85,7 +85,7 @@ class EventDetailActivity : AppCompatActivity(){
                     launcherIntent.putExtra("event_edit", event)
                     editEventIntentLauncher.launch(launcherIntent)
                 } else {
-                    Snackbar.make(parentLayout, "You ARE admin of this event", Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(parentLayout, getString(R.string.event_detail_edit_not_admin), Snackbar.LENGTH_LONG).show()
                 }
             }
         }

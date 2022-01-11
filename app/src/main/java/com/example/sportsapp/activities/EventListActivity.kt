@@ -41,11 +41,11 @@ class EventListActivity : AppCompatActivity(), EventListener{
 
         val refresh = binding.swipeContainer
         refresh.setOnRefreshListener {
-            val e = app.events.getAll()
-            for (event in e) {
+            val events = app.events.getAll()
+            for (event in events) {
                 i("$event")
             }
-            binding.recyclerViewEvents.adapter = EventAdapter(e, this)
+            binding.recyclerViewEvents.adapter = EventAdapter(events, this)
             binding.recyclerViewEvents.adapter?.notifyDataSetChanged()
             refresh.isRefreshing = false
         }

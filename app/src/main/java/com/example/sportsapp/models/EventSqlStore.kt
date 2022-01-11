@@ -62,10 +62,25 @@ class EventSqlStore (_location: LocationStore): EventStore {
     }
 
     override fun create(event: Event) {
-        TODO("Not yet implemented")
+        transaction {
+            EventsTable.insert {
+                it[title] = event.title
+                it[description] = event.description
+                it[l_id] = event.location.id
+                it[admin] = event.admin.id
+                it[time] = event.dateTime
+            }
+        }
     }
 
     override fun update(event: Event) {
-        TODO("Not yet implemented")
+        transaction {
+            EventsTable.update({ EventsTable.id eq event.id }) {
+                it[title] = event.title
+                it[description] = event.description
+                it[l_id] = event.location.id
+                it[time] = event.dateTime
+            }
+        }
     }
 }

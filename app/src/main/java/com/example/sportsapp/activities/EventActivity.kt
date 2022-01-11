@@ -50,6 +50,13 @@ class EventActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener,
             binding.eventTitle.setText(event.title)
             binding.eventDescription.setText(event.description)
             binding.buttonLocationList.text = event.location.name
+            binding.buttonTime.text = getString(R.string.input_event_time_placeholder,
+                event.dateTime.hour.toString().padStart(2, '0'),
+                event.dateTime.minute.toString().padStart(2, '0'))
+            binding.buttonDate.text = getString(R.string.input_event_date_placeholder,
+                event.dateTime.dayOfMonth.toString().padStart(2, '0'),
+                event.dateTime.monthValue.toString().padStart(2, '0'),
+                event.dateTime.year)
             binding.buttonSubmitEvent.text = getString(R.string.edit_event_submit)
         }
 
@@ -63,16 +70,19 @@ class EventActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener,
         binding.buttonSubmitEvent.setOnClickListener {
             event.title = binding.eventTitle.text.toString()
             event.description = binding.eventDescription.text.toString()
-            //event.admin.username = app.user.username
+            event.admin.id = app.user.getUserId()
 
             if (event.title.isEmpty() || event.description.isEmpty()) {
                 Snackbar.make(it, "Missing information", Snackbar.LENGTH_LONG).show()
             } else {
-                //app.events.add(event.copy())
+                if (edit) {
+                    app.events.update(event.copy())
+                } else {
+                    app.events.create(event.copy())
+                }
                 setResult(RESULT_OK)
                 finish()
             }
-
         }
 
         binding.toolbar.setNavigationOnClickListener {
@@ -116,44 +126,42 @@ class EventActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener,
     }
 
     override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-        /*
+
         i("Time set to $hourOfDay:$minute")
 
+        // Save date
         val year = event.dateTime.year
         val month = event.dateTime.monthValue
         val day = event.dateTime.dayOfMonth
 
         event.dateTime = LocalDateTime.of(year, month, day, hourOfDay, minute)
 
-        binding.labelTime.text = getString(R.string.input_event_time_placeholder,
+        binding.buttonTime.text = getString(R.string.input_event_time_placeholder,
             hourOfDay.toString().padStart(2, '0'),
             minute.toString().padStart(2, '0'))
 
         i("dateTime: ${event.dateTime}")
-
-         */
     }
 
     override fun onDateSet(view: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
-        /*
+
         // month is in range 0..11
         // +1 for use when creating new date
         val month_correct = month + 1
 
         i("Date set to $dayOfMonth.$month_correct.$year")
 
+        // Save time
         val hour = event.dateTime.hour
         val minute = event.dateTime.minute
 
         event.dateTime = LocalDateTime.of(year, month_correct, dayOfMonth, hour, minute)
 
-        binding.labelDate.text = getString(R.string.input_event_date_placeholder,
+        binding.buttonDate.text = getString(R.string.input_event_date_placeholder,
             dayOfMonth.toString().padStart(2, '0'),
             month_correct.toString().padStart(2, '0'),
             year)
 
         i("dateTime: ${event.dateTime}")
-
-         */
     }
 }
