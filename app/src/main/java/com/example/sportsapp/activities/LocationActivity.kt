@@ -1,7 +1,10 @@
 package com.example.sportsapp.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import com.example.sportsapp.databinding.ActivityLocationBinding
 import com.example.sportsapp.main.MainApp
 import com.example.sportsapp.models.Location
@@ -13,6 +16,7 @@ class LocationActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLocationBinding
     var location = Location()
     lateinit var app : MainApp
+    private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +26,12 @@ class LocationActivity : AppCompatActivity() {
 
         app = application as MainApp
         i("Location Activity started...")
+
+        binding.buttonLocation.setOnClickListener {
+            val launcherIntent = Intent(this, MapActivity::class.java)
+                .putExtra("location", location.GpsLoc)
+            mapIntentLauncher.launch(launcherIntent)
+        }
 
         binding.buttonSubmit.setOnClickListener {
             i("Add button pressed")
@@ -39,5 +49,25 @@ class LocationActivity : AppCompatActivity() {
                 finish()
             }
         }
+
+        registerMapCallback()
+    }
+
+    private fun registerMapCallback() {
+        mapIntentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+                result ->
+                when (result.resultCode) {
+                    RESULT_OK -> {
+                        if(result.data != null) {
+                            i("Got Location ${result.data.toString()}")
+                            location.GpsLoc = result.data!!.extras?.getParcelable("location")!!
+                            i("Location == ${location.GpsLoc}")
+                        }
+                    }
+                    RESULT_CANCELED -> {}
+                    else -> {}
+                }
+            }
     }
 }

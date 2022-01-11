@@ -27,7 +27,10 @@ object EventsTable : IntIdTable("events") {
 
 object LocationsTable : IntIdTable("locations") {
     val name = varchar("name", 20)
-    val description = varchar("description", 20)
+    val description = varchar("description", 256)
+    val latitude = double("latitude")
+    val longitude = double("longitude")
+    val zoom = float("zoom")
 }
 
 object ParticipantsTable : Table("participants") {

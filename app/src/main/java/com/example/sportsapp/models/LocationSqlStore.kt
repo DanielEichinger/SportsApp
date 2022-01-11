@@ -22,7 +22,12 @@ class LocationSqlStore : LocationStore {
             locationResult.forEach {
                 locations.add(Location(it[LocationsTable.id].value,
                     it[LocationsTable.name].toString(),
-                    it[LocationsTable.description].toString()))
+                    it[LocationsTable.description].toString(),
+                    GpsLocation(it[LocationsTable.latitude],
+                        it[LocationsTable.longitude],
+                        it[LocationsTable.zoom]
+                    )
+                ))
 
                 i("${it[LocationsTable.id]} ${it[LocationsTable.name]}")
             }
@@ -46,6 +51,9 @@ class LocationSqlStore : LocationStore {
             val id = LocationsTable.insertAndGetId {
                 it[name] = location.name
                 it[description] = location.description
+                it[latitude] = location.GpsLoc.lat
+                it[longitude] = location.GpsLoc.lng
+                it[zoom] = location.GpsLoc.zoom
             }
 
             location.sports.forEach { act_it ->

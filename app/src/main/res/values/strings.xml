@@ -40,4 +40,5 @@
     <string name="event_detail_edit">Edit</string>
     <string name="event_detail_join">Join</string>
     <string name="event_detail_edit_not_admin">You can not edit this event. Please inform the admin of this event using the chat.</string>
+    <string name="title_activity_map">MapActivity</string>
 </resources>

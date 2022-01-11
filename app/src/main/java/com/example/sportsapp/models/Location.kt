@@ -7,4 +7,10 @@ import kotlinx.parcelize.Parcelize
 data class Location(var id: Int = 0,
                     var name: String = "",
                     var description: String = "",
+                    var GpsLoc: GpsLocation = GpsLocation(),
                     var sports: MutableSet<String> = mutableSetOf()) : Parcelable
+
+@Parcelize
+data class GpsLocation(var lat: Double = 49.0020,
+                       var lng: Double = 12.0962,
+                       var zoom: Float = 15f) : Parcelable
