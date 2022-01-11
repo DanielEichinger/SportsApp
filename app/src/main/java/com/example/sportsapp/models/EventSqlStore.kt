@@ -83,4 +83,30 @@ class EventSqlStore (_location: LocationStore): EventStore {
             }
         }
     }
+
+    override fun addParticipant(u_id: Int, e_id: Int) : Boolean{
+
+        var joined = true // Flag to indicate if user was added to the event or not
+
+        transaction {
+            val search: Query = ParticipantsTable.select {
+                ParticipantsTable.u_id.eq(u_id).and(ParticipantsTable.e_id.eq(e_id))
+            }
+
+            if (search.empty()) { // User has not joined the event -> join event
+                ParticipantsTable.insert {
+                    it[ParticipantsTable.u_id] = u_id
+                    it[ParticipantsTable.e_id] = e_id
+                }
+                joined = true
+
+            } else { // User is already participant of the event -> remove user from event
+                ParticipantsTable.deleteWhere {
+                    ParticipantsTable.u_id.eq(u_id).and(ParticipantsTable.e_id.eq(e_id))
+                }
+                joined = false
+            }
+        }
+        return joined
+    }
 }

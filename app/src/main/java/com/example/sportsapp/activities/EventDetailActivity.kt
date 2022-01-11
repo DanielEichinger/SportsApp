@@ -78,7 +78,6 @@ class EventDetailActivity : AppCompatActivity(){
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.item_edit_event -> {
-
                 val parentLayout: View = findViewById(R.id.appBarLayout)
                 if (app.user.getUserId() == event.admin.id) {
                     val launcherIntent = Intent(this, EventActivity::class.java)
@@ -86,6 +85,20 @@ class EventDetailActivity : AppCompatActivity(){
                     editEventIntentLauncher.launch(launcherIntent)
                 } else {
                     Snackbar.make(parentLayout, getString(R.string.event_detail_edit_not_admin), Snackbar.LENGTH_LONG).show()
+                }
+            }
+            R.id.item_join_event -> {
+                val parentLayout: View = findViewById(R.id.appBarLayout)
+                if (app.user.getUserId() == event.admin.id) {
+                    Snackbar.make(parentLayout, getString(R.string.event_detail_join_admin), Snackbar.LENGTH_LONG).show()
+                } else {
+                    // Join event when not already, otherwise leave event
+                    val joined = app.events.addParticipant(app.user.getUserId(), event.id)
+                    if (joined) {
+                        Snackbar.make(parentLayout, getString(R.string.event_detail_joined), Snackbar.LENGTH_LONG).show()
+                    } else {
+                        Snackbar.make(parentLayout, getString(R.string.event_detail_left), Snackbar.LENGTH_LONG).show()
+                    }
                 }
             }
         }
