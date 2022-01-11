@@ -39,9 +39,12 @@
     <string name="event_detail_comment">Comment</string>
     <string name="event_detail_edit">Edit</string>
     <string name="event_detail_join">Join</string>
+    <string name="event_detail_location">Show on Map</string>
     <string name="event_detail_edit_not_admin">You can not edit this event. Please inform the admin of this event using the chat.</string>
     <string name="event_detail_join_admin">You are the admin of this event. You are already a member of this event.</string>
     <string name="event_detail_joined">You have joined this event</string>
     <string name="event_detail_left">You have left this event</string>
+    <string name="event_detail_admin">Admin: %1s</string>
+    <string name="event_detail_location_time">At: %1s, %2s</string>
     <string name="title_activity_map">MapActivity</string>
 </resources>

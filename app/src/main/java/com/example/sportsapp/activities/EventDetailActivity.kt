@@ -18,6 +18,7 @@ import com.example.sportsapp.models.Event
 import com.google.android.material.snackbar.Snackbar
 import timber.log.Timber.i
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class EventDetailActivity : AppCompatActivity(){
 
@@ -50,7 +51,9 @@ class EventDetailActivity : AppCompatActivity(){
             binding.toolbar.title = event.title
             binding.description.text = event.description
             event.dateTime
-            binding.location.text = event.location.name
+            binding.admin.text = getString(R.string.event_detail_admin, event.admin.username)
+            binding.location.text = getString(R.string.event_detail_location_time,
+                event.location.name, event.dateTime.format(DateTimeFormatter.ofPattern("HH:mm dd.MM.yyyy")))
             event.admin
         }
 
@@ -58,13 +61,15 @@ class EventDetailActivity : AppCompatActivity(){
             finish()
         }
 
-        binding.button.setOnClickListener {
+        binding.buttonComment.setOnClickListener {
             chatMessage.message = binding.message.text.toString()
             chatMessage.user.id = app.user.getUserId()
             chatMessage.time = LocalDateTime.now()
             app.chatMessages.create(event.id, chatMessage)
             binding.recyclerView.adapter = ChatMessageAdapter(app.chatMessages.getAll(event.id))
             binding.recyclerView.adapter?.notifyDataSetChanged()
+            binding.message.setText("")
+            binding.message.clearFocus()
         }
 
         editEventCallback()

@@ -3,13 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/item_edit_event"
-        android:title="@string/event_detail_edit"
-        app:showAsAction="always"/>
-
-    <item
         android:id="@+id/item_join_event"
         android:title="@string/event_detail_join"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/item_show_location"
+        android:title="@string/event_detail_location"
+        android:icon="@drawable/ic_location"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/item_edit_event"
+        android:icon="@drawable/ic_edit"
+        android:title="@string/event_detail_edit"
         app:showAsAction="always"/>
 
 </menu>
