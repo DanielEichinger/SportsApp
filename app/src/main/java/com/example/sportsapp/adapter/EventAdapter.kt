@@ -10,6 +10,7 @@ import com.example.sportsapp.main.MainApp
 import com.example.sportsapp.models.Event
 import android.content.Context
 import com.example.sportsapp.activities.EventListener
+import java.time.format.DateTimeFormatter
 
 class EventAdapter constructor(private var events: List<Event>,
                                private val listener: EventListener) :
@@ -35,7 +36,8 @@ class EventAdapter constructor(private var events: List<Event>,
             binding.eventDescription.text = event.description
             binding.eventLocation.text = event.location.name
             binding.eventAdmin.text = binding.root.context.getString(R.string.event_list_created_by) + " " + event.admin?.username
-            binding.eventTime.text = event.dateTime.toString()
+            binding.eventTime.text = event.dateTime.format(
+                DateTimeFormatter.ofPattern("HH:mm  dd.MM.yyyy"))
             binding.participants.text = "Joined: " + event.participants.size.toString()
             binding.eventChat.text = "Messages: " + event.chatHistory.size.toString()
             binding.root.setOnClickListener { listener.onEventClick(event) }
