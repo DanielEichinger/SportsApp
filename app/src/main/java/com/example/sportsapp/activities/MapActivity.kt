@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.sportsapp.R
+import timber.log.Timber.i
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -13,18 +14,27 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.example.sportsapp.databinding.ActivityMapBinding
+import com.example.sportsapp.main.MainApp
 import com.example.sportsapp.models.GpsLocation
+import com.example.sportsapp.models.Location
 import com.google.android.gms.maps.model.Marker
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerDragListener {
 
+    lateinit var app: MainApp
+
     private lateinit var map: GoogleMap
     private lateinit var binding: ActivityMapBinding
     var location = GpsLocation()
+    var location_list = ArrayList<Location>()
     private lateinit var mode: String
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        app = application as MainApp
 
         binding = ActivityMapBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -36,6 +46,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerD
         if (intent.hasExtra("location_display")) {
             mode = "display"
             location = intent.extras?.getParcelable<GpsLocation>("location_display")!!
+        }
+        if (intent.hasExtra("location_list")) {
+            mode = "display_list"
+            app.locations.getAll().forEach {
+                location_list.add(it)
+            }
+            location_list.forEach { i("Location: $it") }
         }
 
         val mapFragment = supportFragmentManager
@@ -71,6 +88,18 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerD
                 .position(loc)
             map.addMarker(options)
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, location.zoom))
+        }
+        if (mode == "display_list") {
+            map = googleMap
+            location_list.forEach {
+                val loc = LatLng(it.GpsLoc.lat, it.GpsLoc.lng)
+                val options = MarkerOptions()
+                    .position(loc)
+                    .title(it.name)
+                    .snippet(it.description)
+                map.addMarker(options)
+            }
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(LatLng(49.010830, 12.099704), 12f))
         }
     }
 

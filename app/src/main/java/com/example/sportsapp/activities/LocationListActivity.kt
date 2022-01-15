@@ -12,6 +12,7 @@ import com.example.sportsapp.R
 import com.example.sportsapp.adapter.LocationAdapter
 import com.example.sportsapp.databinding.ActivityLocationListBinding
 import com.example.sportsapp.main.MainApp
+import com.example.sportsapp.models.GpsLocation
 import com.example.sportsapp.models.Location
 import timber.log.Timber.i
 
@@ -21,6 +22,7 @@ class LocationListActivity : AppCompatActivity(), LocationListener{
     private lateinit var binding: ActivityLocationListBinding
 
     private lateinit var refreshLauncherIntent : ActivityResultLauncher<Intent>
+    private lateinit var showLocationsMapLauncherIntent: ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,16 +47,13 @@ class LocationListActivity : AppCompatActivity(), LocationListener{
 
         val refresh = binding.swipeContainer
         refresh.setOnRefreshListener {
-            val l = app.locations.getAll()
-            for (loc in l) {
-                i("LOL: ${loc.toString()}")
-            }
-            binding.recyclerView.adapter = LocationAdapter(l, this)
+            binding.recyclerView.adapter = LocationAdapter(app.locations.getAll(), this)
             binding.recyclerView.adapter?.notifyDataSetChanged()
             refresh.isRefreshing = false
         }
 
         registerRefreshCallback()
+        registerShowLocationsMapCallback()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -75,10 +74,14 @@ class LocationListActivity : AppCompatActivity(), LocationListener{
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                onBackPressed() // other back buttons work without this, somehow this does not
+                onBackPressed() // back buttons on other activities work without this, somehow not here
             }
-            R.id.item_show_location_list -> {
-                i("Map clicked!")
+            R.id.item_locations_map -> {
+                val launcherIntent = Intent(this, MapActivity::class.java)
+                // value of this extra is not important
+                // it is only used to tell MapActivity to use location list from MainApp
+                launcherIntent.putExtra("location_list", 0)
+                showLocationsMapLauncherIntent.launch(launcherIntent)
             }
         }
         return super.onOptionsItemSelected(item)
@@ -90,6 +93,11 @@ class LocationListActivity : AppCompatActivity(), LocationListener{
         }
     }
 
+    private fun registerShowLocationsMapCallback() {
+        showLocationsMapLauncherIntent = registerForActivityResult((ActivityResultContracts.StartActivityForResult())) {
+            i("Map for multiple locations closed")
+        }
+    }
 }
 
 interface LocationListener {
