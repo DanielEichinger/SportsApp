@@ -21,6 +21,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerD
     private lateinit var map: GoogleMap
     private lateinit var binding: ActivityMapBinding
     var location = GpsLocation()
+    private lateinit var mode: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +29,14 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerD
         binding = ActivityMapBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        location = intent.extras?.getParcelable<GpsLocation>("location")!!
+        if (intent.hasExtra("location_edit")) {
+            mode = "edit"
+            location = intent.extras?.getParcelable<GpsLocation>("location_edit")!!
+        }
+        if (intent.hasExtra("location_display")) {
+            mode = "display"
+            location = intent.extras?.getParcelable<GpsLocation>("location_display")!!
+        }
 
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
@@ -37,21 +45,33 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerD
 
     override fun onBackPressed() {
         val resultIntent = Intent()
-        resultIntent.putExtra("location", location)
+        if (mode == "edit") {
+            resultIntent.putExtra("location_edit", location)
+        }
         setResult(Activity.RESULT_OK, resultIntent)
         finish()
         super.onBackPressed()
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
-        map = googleMap
-        map.setOnMarkerDragListener(this)
-        val loc = LatLng(location.lat, location.lng)
-        val options = MarkerOptions()
-            .draggable(true)
-            .position(loc)
-        map.addMarker(options)
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, location.zoom))
+        if (mode == "edit") {
+            map = googleMap
+            map.setOnMarkerDragListener(this)
+            val loc = LatLng(location.lat, location.lng)
+            val options = MarkerOptions()
+                .draggable(true)
+                .position(loc)
+            map.addMarker(options)
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, location.zoom))
+        }
+        if (mode == "display") {
+            map = googleMap
+            val loc = LatLng(location.lat, location.lng)
+            val options = MarkerOptions()
+                .position(loc)
+            map.addMarker(options)
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, location.zoom))
+        }
     }
 
     override fun onMarkerDragStart(marker: Marker) {

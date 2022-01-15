@@ -27,6 +27,7 @@ class EventDetailActivity : AppCompatActivity(){
     var chatMessage = ChatMessage()
     lateinit var app: MainApp
     private lateinit var editEventIntentLauncher : ActivityResultLauncher<Intent>
+    private lateinit var showLocationIntentLauncher : ActivityResultLauncher<Intent>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -73,6 +74,7 @@ class EventDetailActivity : AppCompatActivity(){
         }
 
         editEventCallback()
+        showLocationCallback()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -106,6 +108,12 @@ class EventDetailActivity : AppCompatActivity(){
                     }
                 }
             }
+            R.id.item_show_location -> {
+                i("LOCATION: ${event.location.GpsLoc}")
+                val launcherIntent = Intent(this, MapActivity::class.java)
+                launcherIntent.putExtra("location_display", event.location.GpsLoc)
+                showLocationIntentLauncher.launch(launcherIntent)
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -113,6 +121,12 @@ class EventDetailActivity : AppCompatActivity(){
     private fun editEventCallback() {
         editEventIntentLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
             i("Done Editing")
+        }
+    }
+
+    private fun showLocationCallback() {
+        showLocationIntentLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            i("Map closed")
         }
     }
 }

@@ -29,7 +29,7 @@ class LocationActivity : AppCompatActivity() {
 
         binding.buttonLocation.setOnClickListener {
             val launcherIntent = Intent(this, MapActivity::class.java)
-                .putExtra("location", location.GpsLoc)
+                .putExtra("location_edit", location.GpsLoc)
             mapIntentLauncher.launch(launcherIntent)
         }
 
@@ -61,7 +61,7 @@ class LocationActivity : AppCompatActivity() {
                     RESULT_OK -> {
                         if(result.data != null) {
                             i("Got Location ${result.data.toString()}")
-                            location.GpsLoc = result.data!!.extras?.getParcelable("location")!!
+                            location.GpsLoc = result.data!!.extras?.getParcelable("location_edit")!!
                             i("Location == ${location.GpsLoc}")
                         }
                     }
