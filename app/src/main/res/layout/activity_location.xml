@@ -6,6 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".activities.LocationActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.appbar.AppBarLayout>
+
     <TextView
         android:id="@+id/labelName"
         android:layout_width="wrap_content"
@@ -14,7 +27,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/input_location_name"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
     <EditText
         android:id="@+id/name"
@@ -52,25 +65,25 @@
         app:layout_constraintTop_toBottomOf="@+id/labelDescription" />
 
     <TextView
-        android:id="@+id/labelImage"
+        android:id="@+id/labelLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="@string/input_location_image"
+        android:text="@string/input_location_location"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/description" />
 
     <Button
-        android:id="@+id/buttonImage"
+        android:id="@+id/buttonLocation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:text="@string/input_location_image_select"
+        android:text="@string/input_location_location_select"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelImage" />
+        app:layout_constraintTop_toBottomOf="@+id/labelLocation" />
 
     <TextView
         android:id="@+id/labelKindsOfSports"
@@ -96,6 +109,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelKindsOfSports" />
 
+
     <Button
         android:id="@+id/buttonSubmit"
         android:layout_width="0dp"
@@ -107,25 +121,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/labelLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/input_location_location"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonImage" />
-
-    <Button
-        android:id="@+id/buttonLocation"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/input_location_location_select"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/labelLocation" />
 </androidx.constraintlayout.widget.ConstraintLayout>

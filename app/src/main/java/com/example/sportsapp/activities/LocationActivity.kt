@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import com.example.sportsapp.R
 import com.example.sportsapp.databinding.ActivityLocationBinding
 import com.example.sportsapp.main.MainApp
 import com.example.sportsapp.models.Location
@@ -23,6 +24,10 @@ class LocationActivity : AppCompatActivity() {
 
         binding = ActivityLocationBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.toolbar.title = getString(R.string.input_location_toolbar_title)
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
 
         app = application as MainApp
         i("Location Activity started...")
