@@ -47,6 +47,7 @@ class EventActivity : AppCompatActivity(), TimePickerDialog.OnTimeSetListener,
         if (intent.hasExtra("event_edit")) {
             edit = true
             event = intent.extras?.getParcelable("event_edit")!!
+            binding.toolbar.title = getString(R.string.event_edit_toolbar_title)
             binding.eventTitle.setText(event.title)
             binding.eventDescription.setText(event.description)
             binding.buttonLocationList.text = event.location.name
