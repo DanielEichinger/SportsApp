@@ -35,6 +35,8 @@ class LoginActivity : AppCompatActivity() {
             if (app.user.login(binding.username.text.toString(), binding.password.text.toString())) {
                 val launcherIntent = Intent(this, EventListActivity::class.java)
                 startActivity(launcherIntent)
+                setResult(RESULT_OK)
+                finish()
             } else {
                 Snackbar.make(it, "Wrong input", Snackbar.LENGTH_LONG).show()
             }
