@@ -55,7 +55,18 @@ class EventDetailActivity : AppCompatActivity(){
             binding.admin.text = getString(R.string.event_detail_admin, event.admin.username)
             binding.location.text = getString(R.string.event_detail_location_time,
                 event.location.name, event.dateTime.format(DateTimeFormatter.ofPattern("HH:mm dd.MM.yyyy")))
-            event.admin
+            binding.participantList.text = "Participants: "
+
+            if (event.participants.isEmpty()) {
+                binding.participantList.append("None")
+            } else {
+                var temp_participants = ""
+                event.participants.forEach {
+                    temp_participants += it.username + ", "
+                }
+                // Remove trailing ", "
+                binding.participantList.append(temp_participants.dropLast(2))
+            }
         }
 
         binding.toolbar.setNavigationOnClickListener {
