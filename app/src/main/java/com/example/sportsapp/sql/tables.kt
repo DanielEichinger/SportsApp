@@ -18,7 +18,7 @@ object ChatMessagesTable : IntIdTable("chat_messages") {
 }
 
 object EventsTable : IntIdTable("events") {
-    val title = varchar("title", 20)
+    val title = varchar("title", 64)
     val description = varchar("description", 256)
     val l_id = integer("l_id")
     val admin = integer("admin")
@@ -26,7 +26,7 @@ object EventsTable : IntIdTable("events") {
 }
 
 object LocationsTable : IntIdTable("locations") {
-    val name = varchar("name", 20)
+    val name = varchar("name", 64)
     val description = varchar("description", 256)
     val latitude = double("latitude")
     val longitude = double("longitude")
