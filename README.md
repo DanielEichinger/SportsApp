@@ -1,6 +1,6 @@
 # Assignment Project - Sports App
 
-This repository contains the assignment project for the course [Android Programming with Kotlin (KAPK) - Mr. Drohan - IT, IW - WiSe21/22](http://elearning.uni-regensburg.de/course/view.php?id=51681)
+This repository contains the assignment project for the course [Android Programming with Kotlin (KAPK) - Mr. Drohan - IT, IW - WiSe21/22](https://elearning.uni-regensburg.de/course/view.php?id=51681)
 
 ## Table of Contents
 1. [Description](#description-of-the-app)
